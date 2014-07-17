@@ -64,7 +64,7 @@ getSoftInfo(){
 }
 
 #######EXECUTION#######
-date >> "{"{$log}"}"
+date >> "{$log}"
 echo -e "\nSystem Report\n------------------" >> "{$log}"
 echo -e "\nGenerating system report..."
 checkRAM >> "{$log}" 2>&1
