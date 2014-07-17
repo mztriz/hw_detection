@@ -17,10 +17,6 @@ fi
 #######GLOBALVARS#######
 export log=/$HOME/Desktop/linux-check.log
 
-########################
-date >> $log
-echo -e "\nSystem Report\n------------------" >> $log
-
 #######FUNCTIONS#######
 checkRAM(){
 	RAM=$(free -m | awk '/^Mem:/{print $2}')
@@ -57,7 +53,7 @@ getHardInfo(){
 	audio=$(lspci | cut -f2- -d ' ' | awk '/[Aa]udio/'
 )
 	echo -e "${serial}\n\nCPU:\n${processor}\n\n${drives}\nOptical drives: ${opticals}\n\nUSB ports:\n${usb}\n\n${network}\n${graphics}\n${audio}\n"
-	
+
 }
 
 getSoftInfo(){
@@ -68,14 +64,15 @@ getSoftInfo(){
 }
 
 #######EXECUTION#######
-
+date >> "{"{$log}"}"
+echo -e "\nSystem Report\n------------------" >> "{$log}"
 echo -e "\nGenerating system report..."
-checkRAM >> $log 2>&1
+checkRAM >> "{$log}" 2>&1
 echo "Checking devices..."
-checkDev >> $log 2>&1
+checkDev >> "{$log}" 2>&1
 echo "Checking avalible hardware devices..."
-getHardInfo >> $log 2>&1
+getHardInfo >> "{$log}" 2>&1
 echo "Checking software configuration..."
-getSoftInfo >> $log 2>&1
+getSoftInfo >> "{$log}" 2>&1
 echo -e "All Finished! Check ${log} for details.\n"
-cat $log 
+cat "{$log}" 
