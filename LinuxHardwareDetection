@@ -30,12 +30,12 @@ checkRAM(){
 checkDev(){
 	echo -e "Present Devices\n-------------------"
 	drives=( '/dev/cd*' '/dev/dvd*' '/dev/usb*' )
-        for i in "${drives[@]}"
+        for drive in "${drives[@]}"
         do
                 if  ls $i 1>/dev/null
-                        then echo "${i}: Present"
+                        then echo "${drive}: Present"
                 else
-                        echo "${i}: Not present"
+                        echo "${drive}: Not present"
                 fi
         done
 }
